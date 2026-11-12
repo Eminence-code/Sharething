@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>sharething | Temporary Share (12h Expiry)</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+
+  <main class="sharething-container">
+    <header class="sharething-header">
+      <div class="brand-row">
+        <h1 class="brand-title">sharething</h1>
+        <span class="policy-badge">12h Expiry • 3 GB Max</span>
+      </div>
+      <p class="brand-tagline">Drop any file or text to generate an auto-expiring QR code & direct link.</p>
+    </header>
+
+    <div class="mode-tabs">
+      <button type="button" class="tab-btn active" id="tabModeFile">Upload File</button>
+      <button type="button" class="tab-btn" id="tabModeText">Share Text / Link</button>
+    </div>
+
+    <form id="uploadForm">
+      <!-- File Mode Content -->
+      <div class="tab-content active" id="fileContentSection">
+        <div class="dropzone" id="dropTarget">
+          <span class="dropzone-icon">📁</span>
+          <p class="dropzone-label">Click to browse or drag file here</p>
+          <p class="dropzone-subtext">Supports MP4, MP3, PPTX, JPG, PNG, VCARD & all others up to 3 GB</p>
+          <input type="file" id="filePicker" class="file-hidden-input" />
+        </div>
+
+        <div class="file-selected-pill" id="fileSelectedPill">
+          <span class="file-selected-name" id="selectedFileName">file.ext</span>
+          <span class="file-selected-size" id="selectedFileSize">0 MB</span>
+        </div>
+      </div>
+
+      <!-- Text Mode Content -->
+      <div class="tab-content" id="textContentSection">
+        <textarea 
+          id="textShareInput" 
+          class="text-share-input" 
+          placeholder="Paste links, long messages, passwords, or code snippets here..."
+        ></textarea>
+      </div>
+
+      <button type="submit" class="action-submit-btn" id="submitActionBtn">Generate QR Code</button>
+    </form>
+
+    <!-- Upload Progress Bar -->
+    <div class="upload-progress-container" id="uploadProgressBox">
+      <div class="progress-track">
+        <div class="progress-bar-fill" id="progressBar"></div>
+      </div>
+      <div class="progress-metrics">
+        <span id="progressPercent">0%</span>
+        <span id="progressBytes">0 MB / 0 MB</span>
+      </div>
+    </div>
+
+    <!-- Output QR & Link Section -->
+    <section class="result-display-section" id="resultDisplaySection">
+      <div class="qr-frame" id="qrContainer"></div>
+
+      <div class="share-link-pill">
+        <span class="share-link-text" id="shareUrlDisplay">https://...</span>
+        <button type="button" class="copy-mini-btn" id="copyUrlBtn">Copy</button>
+      </div>
+
+      <button type="button" class="download-qr-btn" id="downloadQrImageBtn">
+        💾 Save QR Image
+      </button>
+    </section>
+  </main>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>
