@@ -26,6 +26,15 @@ const hasR2 = Boolean(
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
+const path = require('path'); // Ensure this is at the top of your file
+
+// Tell Express where the static files are
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Explicitly serve index.html when someone visits the main link
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
 const r2 = hasR2
   ? new S3Client({
